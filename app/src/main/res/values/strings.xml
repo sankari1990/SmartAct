@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">SmartRetail</string>
+    <string-array name="option">
+        <item>No</item>
+        <item>Yes</item>
+    </string-array>
+</resources>

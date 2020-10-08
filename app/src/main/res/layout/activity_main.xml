@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="40dp"
+    tools:context=".MainActivity">
+
+
+    <Button
+        android:id="@+id/btn_master"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="20dp"
+        android:layout_weight="1"
+        android:background="@color/mainMenu"
+        android:fontFamily="sans-serif-black"
+        android:onClick="onMasterClick"
+        android:text="Masters"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:typeface="normal" />
+
+    <Button
+        android:id="@+id/btn_transaction"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="20dp"
+        android:layout_weight="1"
+        android:background="@color/mainMenu"
+        android:fontFamily="sans-serif-black"
+        android:onClick="onTransactionClick"
+        android:text="Transactions"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:typeface="normal" />
+
+    <Button
+        android:id="@+id/btn_reports"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="20dp"
+        android:layout_weight="1"
+        android:background="@color/mainMenu"
+        android:fontFamily="sans-serif-black"
+        android:onClick="onReportClick"
+        android:text="Reports"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:typeface="normal" />
+
+    <Button
+        android:id="@+id/btn_tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="20dp"
+        android:layout_weight="1"
+        android:background="@color/mainMenu"
+        android:fontFamily="sans-serif-black"
+        android:text="Tools"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:typeface="normal" />
+
+    <Button
+        android:id="@+id/btn_exit"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="20dp"
+        android:layout_weight="1"
+        android:background="@color/mainMenu"
+        android:fontFamily="sans-serif-black"
+        android:onClick="onExitClick"
+        android:text="Exit"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:typeface="normal" />
+
+
+</LinearLayout>

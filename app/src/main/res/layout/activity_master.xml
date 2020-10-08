@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="40dp"
+    tools:context=".MasterActivity">
+
+
+    <Button
+        android:id="@+id/btn_group"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_margin="20dp"
+        android:layout_weight="1"
+        android:background="@color/masters"
+        android:fontFamily="sans-serif-black"
+        android:onClick="onGroupMasterClick"
+        android:text="Group Master"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:typeface="normal" />
+
+    <Button
+        android:id="@+id/btn_unit"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_margin="20dp"
+        android:layout_weight="1"
+        android:background="@color/masters"
+        android:fontFamily="sans-serif-black"
+        android:onClick="onUnitMasterClick"
+        android:text="Unit Master"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:typeface="normal" />
+
+    <Button
+        android:id="@+id/btn_pay"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_margin="20dp"
+        android:layout_weight="1"
+        android:background="@color/masters"
+        android:fontFamily="sans-serif-black"
+        android:onClick="onPayMasterClick"
+        android:text="Pay Master"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:typeface="normal" />
+
+    <Button
+        android:id="@+id/btn_item"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_margin="20dp"
+        android:layout_weight="1"
+        android:background="@color/masters"
+        android:fontFamily="sans-serif-black"
+        android:onClick="onItemMasterClick"
+        android:text="Item Master"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:typeface="normal" />
+
+    <Button
+        android:id="@+id/btn_type"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_margin="20dp"
+        android:layout_weight="1"
+        android:background="@color/masters"
+        android:fontFamily="sans-serif-black"
+        android:onClick="onTypeMasterClick"
+        android:text="Type Master"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:typeface="normal" />
+
+
+    <Button
+        android:id="@+id/btn_exit"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_margin="20dp"
+        android:layout_weight="1"
+        android:background="@color/masters"
+        android:fontFamily="sans-serif-black"
+        android:onClick="onExitClick"
+        android:text="Exit"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:typeface="normal" />
+
+
+</LinearLayout>
