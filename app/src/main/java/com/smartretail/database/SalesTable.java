@@ -13,7 +13,7 @@ public class SalesTable {
     private int intNo;
     private String dtmDt;
     private int intItCode;
-    private double sngQty;
+    private int sngQty;
     private double sngKgs;
     private double sngRate;
     private double sngAmt;
@@ -57,11 +57,11 @@ public class SalesTable {
         this.intItCode = intItCode;
     }
 
-    public double getSngQty() {
+    public int getSngQty() {
         return sngQty;
     }
 
-    public void setSngQty(double sngQty) {
+    public void setSngQty(int sngQty) {
         this.sngQty = sngQty;
     }
 

@@ -44,9 +44,10 @@
                     android:paddingLeft="15dp"
                     android:paddingRight="5dp"
                     android:paddingTop="10dp"
-                    android:text="Name"
+                    android:text="TextV"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="#000" />
+                    android:textColor="#000"
+                    android:visibility="invisible" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -54,11 +55,12 @@
                 android:orientation="horizontal"
                 android:layout_weight="2"
                 >
+
                 <View
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
-                    android:background="#cfcfcf" >
-                </View>
+                    android:background="#cfcfcf"
+                    android:visibility="invisible"></View>
 
                 <TextView
                     android:id="@+id/qty"
@@ -69,14 +71,16 @@
                     android:paddingLeft="15dp"
                     android:paddingRight="5dp"
                     android:paddingTop="10dp"
-                    android:text="Qty"
+                    android:text="0000"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="#000" />
+                    android:textColor="#000"
+                    android:visibility="invisible" />
+
                 <View
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
-                    android:background="#cfcfcf" >
-                </View>
+                    android:background="#cfcfcf"
+                    android:visibility="invisible"></View>
 
                 <TextView
                     android:id="@+id/kgs"
@@ -87,7 +91,7 @@
                     android:paddingLeft="15dp"
                     android:paddingRight="5dp"
                     android:paddingTop="10dp"
-                    android:text="Kgs"
+                    android:text="Total"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="#000" />
 
@@ -96,19 +100,19 @@
                     android:layout_height="match_parent"
                     android:background="#cfcfcf" >
                 </View>
-
                 <TextView
                     android:id="@+id/amt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="serif"
-                    android:paddingBottom="10dp"
+                    android:text="000.00"
                     android:paddingLeft="15dp"
                     android:paddingRight="5dp"
                     android:paddingTop="10dp"
-                    android:text="Amt"
+                    android:paddingBottom="10dp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="#000" />
+                    android:textColor="#000"
+                    android:fontFamily="serif"
+                    />
             </LinearLayout>
         </LinearLayout>
 

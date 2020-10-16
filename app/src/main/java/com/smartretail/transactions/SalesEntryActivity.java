@@ -1,39 +1,43 @@
 package com.smartretail.transactions;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.smartretail.PreferenceUtils;
 import com.smartretail.R;
-import com.smartretail.adapters.CustomRateFixingAdapter;
 import com.smartretail.adapters.SalesAdapter;
 import com.smartretail.database.DatabaseClient;
 import com.smartretail.database.SalesTable;
-import com.smartretail.master.ItemMasterActivity;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
 
 public class SalesEntryActivity extends AppCompatActivity {
 
-    EditText no,date,itemName,txt_rate,txt_amt,txt_qty,txt_kgs;
+    EditText no,itemName,txt_rate,txt_amt,txt_qty,txt_kgs;
     Button add,save;
     PreferenceUtils preferenceUtils;
     Spinner sale_type_unit,itemCodeSpin,payment_spin;
@@ -42,15 +46,19 @@ public class SalesEntryActivity extends AppCompatActivity {
     ArrayList<SalesTable> salesTables ;
     int saleTypeCode,payCode;
     ListView listView;
-
+    View footerView;
+    double total = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sales_entry);
+        setContentView(R.layout.activity_sales_entry_new);
+        setTitle("Sales");
         salesTables = new ArrayList<>();
         listView = findViewById(R.id.list);
+        footerView = LayoutInflater.from(this).inflate(R.layout.sales_footer, null, false);
+        listView.addFooterView(footerView);
         no = (EditText) findViewById(R.id.txt_num);
-        date = findViewById(R.id.txt_date);
+
         sale_type_unit = findViewById(R.id.sale_type_unit);
         itemCodeSpin = findViewById(R.id.item_code_spin);
         payment_spin = findViewById(R.id.spin_payment);
@@ -106,10 +114,10 @@ public class SalesEntryActivity extends AppCompatActivity {
 
                 if(itemUnit.equalsIgnoreCase("kgs")){
                     double result = itemRate * kgs;
-                    Toast.makeText(SalesEntryActivity.this,"kgs",Toast.LENGTH_LONG).show();
+                    //Toast.makeText(SalesEntryActivity.this,"kgs",Toast.LENGTH_LONG).show();
                     txt_amt.setText(""+result);
                 }else{
-                    Toast.makeText(SalesEntryActivity.this,"qty "+qty+"rate "+itemRate,Toast.LENGTH_LONG).show();
+                    //Toast.makeText(SalesEntryActivity.this,"qty "+qty+"rate "+itemRate,Toast.LENGTH_LONG).show();
                     double result = itemRate * qty;
                     txt_amt.setText(""+result);
                 }
@@ -131,20 +139,20 @@ public class SalesEntryActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 int qty = getvaluefromED(txt_qty);
                 String text = s.toString();
-                int kgs = 0;
+                double kgs = 0;
 
                 try{
-                    kgs = Integer.parseInt(text);
+                    kgs = Double.parseDouble(text);
                 }catch (Exception e){
                 }
                 //
 
                 if(itemUnit.equalsIgnoreCase("kgs")){
                     double result = itemRate * kgs;
-                    Toast.makeText(SalesEntryActivity.this,"kgs",Toast.LENGTH_LONG).show();
+                    //Toast.makeText(SalesEntryActivity.this,"kgs",Toast.LENGTH_LONG).show();
                     txt_amt.setText(""+result);
                 }else{
-                    Toast.makeText(SalesEntryActivity.this,"qty "+itemRate,Toast.LENGTH_LONG).show();
+                    //Toast.makeText(SalesEntryActivity.this,"qty "+itemRate,Toast.LENGTH_LONG).show();
                     double result = itemRate * qty;
                     txt_amt.setText(""+result);
                 }
@@ -152,6 +160,7 @@ public class SalesEntryActivity extends AppCompatActivity {
         });
 
         populateValues();
+        invalidateOptionsMenu();
     }
 
     private int getvaluefromED(EditText et){
@@ -177,9 +186,36 @@ public class SalesEntryActivity extends AppCompatActivity {
     public void populateValues(){
         no.setText(""+preferenceUtils.getSalesEntryNumber());
         no.setEnabled(false);
-        date.setText(preferenceUtils.getDate());
-        date.setEnabled(false);
+        //date.setText(preferenceUtils.getDate());
+        //date.setEnabled(false);
         new populateList().execute();
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+
+        getMenuInflater().inflate(R.menu.menu_date, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem item = menu.findItem(R.id.action_next);
+
+            item.setTitle(preferenceUtils.getDate());
+
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+
+        switch(item.getItemId()){
+            case R.id.menu_item:   //this item has your app icon
+                finish();
+                return true;
+
+            default: return super.onOptionsItemSelected(item);
+        }
     }
 
 
@@ -260,6 +296,7 @@ public class SalesEntryActivity extends AppCompatActivity {
                     txt_rate.setText(rate);
                     txt_qty.setText("");
                     txt_kgs.setText("");
+                    autofocus();
                 }
             };
 
@@ -298,26 +335,57 @@ public class SalesEntryActivity extends AppCompatActivity {
     }
 
     public void onAdd() {
-        Toast.makeText(getApplicationContext(),"Add",Toast.LENGTH_LONG).show();
-        SalesTable salesTable = new SalesTable();
-        salesTable.setIntNo(getvaluefromED(no));
-        salesTable.setDtmDt(date.getText().toString());
-        salesTable.setIntSaleType(saleTypeCode);
-        salesTable.setIntItCode(Integer.parseInt(itemCodeSpin.getSelectedItem().toString()));
-        salesTable.setSngQty(getvaluefromED(txt_qty));
-        salesTable.setSngKgs(getDoublevaluefromED(txt_kgs));
-        salesTable.setSngAmt(getDoublevaluefromED(txt_amt));
-        salesTable.setSngRate(getDoublevaluefromED(txt_rate));
-        salesTable.setSngRoff(Math.round(getDoublevaluefromED(txt_amt) * 100.0) / 100.0);
-        salesTable.setIntPayCode(payCode);
-        salesTables.add(salesTable);
-        Toast.makeText(getApplicationContext(),"SIZE"+salesTables.size(),Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(),"Add",Toast.LENGTH_LONG).show();
+        total = total + getDoublevaluefromED(txt_amt);
+        if((getvaluefromED(txt_qty) > 0 || getDoublevaluefromED(txt_kgs) > 0)  && getDoublevaluefromED(txt_amt)>0) {
+            SalesTable salesTable = new SalesTable();
+            salesTable.setIntNo(getvaluefromED(no));
+            salesTable.setDtmDt(preferenceUtils.getDate());
+            salesTable.setIntSaleType(saleTypeCode);
+            salesTable.setIntItCode(Integer.parseInt(itemCodeSpin.getSelectedItem().toString()));
+            salesTable.setSngQty(getvaluefromED(txt_qty));
+            salesTable.setSngKgs(getDoublevaluefromED(txt_kgs));
+            salesTable.setSngAmt(getDoublevaluefromED(txt_amt));
+            salesTable.setSngRate(getDoublevaluefromED(txt_rate));
+            salesTable.setSngRoff(Math.round(getDoublevaluefromED(txt_amt) * 100.0) / 100.0);
+            salesTable.setIntPayCode(payCode);
+            salesTables.add(salesTable);
+            //Toast.makeText(getApplicationContext(),"SIZE"+salesTables.size(),Toast.LENGTH_LONG).show();
 
-        SalesAdapter salesAdapter = new SalesAdapter(salesTables,getApplicationContext());
-        listView.setAdapter(salesAdapter);
-        salesAdapter.notifyDataSetChanged();
+            SalesAdapter salesAdapter = new SalesAdapter(salesTables, getApplicationContext());
+            listView.setAdapter(salesAdapter);
+             TextView totalText = (footerView.findViewById(R.id.amt));
+             totalText.setText(""+total);
+            salesAdapter.notifyDataSetChanged();
+        }else{
+            final AlertDialog alertDialog = new AlertDialog.Builder(SalesEntryActivity.this).create();
+            alertDialog.setTitle("Error");
+            if((getvaluefromED(txt_qty) > 0 || getDoublevaluefromED(txt_kgs) > 0))
+                alertDialog.setMessage("Amount should not be zero");
+            else
+                alertDialog.setMessage("Kgs/Qty should not be zero");
+            alertDialog.setIcon(R.drawable.ic_error);
+            alertDialog.setButton(Dialog.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    alertDialog.dismiss();
+                }
+            });
+            alertDialog.show();
+        }
 
+    }
 
+    private void autofocus(){
+        if(itemUnit.equalsIgnoreCase("kgs")) {
+            txt_kgs.requestFocus();
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(txt_kgs, InputMethodManager.SHOW_IMPLICIT);
+        }else{
+            txt_qty.requestFocus();
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(txt_qty, InputMethodManager.SHOW_IMPLICIT);
+        }
     }
 
     public void onSave() {

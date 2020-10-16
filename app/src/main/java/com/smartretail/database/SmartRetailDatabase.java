@@ -6,7 +6,7 @@ import androidx.room.Database;
 import androidx.room.RoomDatabase;
 
 
-@Database(entities = {GroupMasterTable.class,UnitMasterTable.class,PaymentMasterTable.class,ItemMasterTable.class,TypeMasterTable.class,SalesTable.class}, version = 4)
+@Database(entities = {GroupMasterTable.class,UnitMasterTable.class,PaymentMasterTable.class,ItemMasterTable.class,TypeMasterTable.class,SalesTable.class}, version = 5)
 public abstract class SmartRetailDatabase extends RoomDatabase {
 
     public abstract GroupMasterDAO groupMasterDAO();

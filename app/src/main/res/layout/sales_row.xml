@@ -11,7 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:weightSum="4"
-
         android:orientation="horizontal">
 
 
@@ -27,7 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_weight="4"
+                android:layout_weight="5"
                 >
                 <View
                     android:id="@+id/verticalLine"
@@ -39,12 +38,12 @@
                     android:id="@+id/itemName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView"
+                    android:text="TextV"
                     android:paddingLeft="15dp"
                     android:paddingRight="5dp"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="#000"
                     android:fontFamily="serif"
                     />
@@ -53,7 +52,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_weight="3"
+                android:layout_weight="2"
                 >
                 <View
                     android:layout_width="1dp"
@@ -62,14 +61,14 @@
                 </View>
                 <TextView
                     android:id="@+id/qty"
-                    android:layout_width="wrap_content"
+                    android:layout_width="90dp"
                     android:layout_height="wrap_content"
-                    android:text="Qty"
+                    android:text="0000"
                     android:paddingLeft="15dp"
                     android:paddingRight="5dp"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="#000"
                     android:fontFamily="serif"
                     />
@@ -80,14 +79,14 @@
                 </View>
                 <TextView
                     android:id="@+id/kgs"
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:text="Kgs"
+                    android:text="00.000"
                     android:paddingLeft="15dp"
                     android:paddingRight="5dp"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="#000"
                     android:fontFamily="serif"
                     />
@@ -99,14 +98,14 @@
                 </View>
                 <TextView
                     android:id="@+id/amt"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Amt"
+                    android:text="000.00"
                     android:paddingLeft="15dp"
                     android:paddingRight="5dp"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="#000"
                     android:fontFamily="serif"
                     />
